@@ -1,0 +1,15 @@
+{
+    "name": "xiso/inertia-blog",
+    "autoload": {
+        "psr-4": {
+            "Xiso\\InertiaBlog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xiso",
+            "email": "ceo@amuz.co.kr"
+        }
+    ],
+    "require": {}
+}
