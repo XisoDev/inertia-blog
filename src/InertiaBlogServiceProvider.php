@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use Lavary\Menu\Builder;
+use Xiso\InertiaBlog\Console\InstallCommand;
 use Xiso\InertiaBlog\Controllers\BlogSettingsController;
 
 class InertiaBlogServiceProvider extends ServiceProvider
@@ -29,6 +30,7 @@ class InertiaBlogServiceProvider extends ServiceProvider
      */
     public function boot(Router $router): void
     {
+        $this->registerCommands();
         $this->settingsRoutes();
 
         $this->publishes([
@@ -40,6 +42,16 @@ class InertiaBlogServiceProvider extends ServiceProvider
         ], 'xisoblog-migrations');
 
         $this->registerSettingMenus();
+    }
+
+    private function registerCommands(){
+        if ($this->app->runningInConsole()) {
+            $this->commands(
+                commands: [
+                    InstallCommand::class,
+                ],
+            );
+        }
     }
 
     private function settingsRoutes(){
@@ -56,12 +68,16 @@ class InertiaBlogServiceProvider extends ServiceProvider
                 'settings_menu', //관리자 메뉴를 생성 해 준다.
             ])->group(function () {
                 Route::get('/blogs','index')->name('index');
+                Route::get('/blogs/create','create')->name('create');
             });
     }
 
     private function registerSettingMenus(){
         add_filter('inertia_menu_settings_main', function(Builder $menu){
-            $menu->add(__('게시판'),['route'=>'settings.blog.index'])->data('order',50)->nickname('settings_menu');
+            $menu->add(__('게시판'),['route'=>'settings.blog.index'])->data('order',50)->nickname('setting_blogs');
+            $menu->item('setting_blogs')->add(__('모든 게시판'),['route'=>'settings.blog.index'])->nickname('setting_blog_list');
+            $menu->item('setting_blogs')->add(__('게시판 생성'),['route'=>'settings.blog.create'])->nickname('setting_blog_create');
+
             return $menu;
         });
     }

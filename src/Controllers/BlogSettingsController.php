@@ -31,4 +31,14 @@ class BlogSettingsController extends BaseController
             'phpVersion' => PHP_VERSION,
         ]);
     }
+
+    public function create(): RenderingView
+    {
+        return $this->themeHandler->render('Blogs/Create', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+    }
 }
