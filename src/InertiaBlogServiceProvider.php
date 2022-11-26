@@ -33,6 +33,8 @@ class InertiaBlogServiceProvider extends ServiceProvider
         $this->registerCommands();
         $this->settingsRoutes();
 
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+
         $this->publishes([
             __DIR__.'/config/inertia-blog.php' => config_path('inertia-blog.php'),
         ],'xisoblog-config');
