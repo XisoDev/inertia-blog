@@ -17,7 +17,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignUuid('blog_id');
+
             $table->foreignUuid('tenant_id');
+            $table->string('slug');
+            $table->unique(['tenant_id','slug'],'unique_slug_per_tenant');
 
             $table->string('type',40)->default('post');
 
