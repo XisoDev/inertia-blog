@@ -10,6 +10,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use Lavary\Menu\Builder;
 use Xiso\InertiaBlog\Console\InstallCommand;
 use Xiso\InertiaBlog\Controllers\BlogSettingsController;
+use Xiso\InertiaBlog\Models\Blog;
 
 class InertiaBlogServiceProvider extends ServiceProvider
 {
@@ -71,6 +72,8 @@ class InertiaBlogServiceProvider extends ServiceProvider
             ])->group(function () {
                 Route::get('/blogs','index')->name('index');
                 Route::get('/blogs/create','create')->name('create');
+                Route::get('/blogs/edit/{blogId}','edit')->name('edit');
+                Route::post('/blogs/create','store')->name('save');
             });
     }
 
@@ -79,6 +82,11 @@ class InertiaBlogServiceProvider extends ServiceProvider
             $menu->add(__('게시판'),['route'=>'settings.blog.index'])->data('order',50)->nickname('setting_blogs');
             $menu->item('setting_blogs')->add(__('모든 게시판'),['route'=>'settings.blog.index'])->nickname('setting_blog_list');
             $menu->item('setting_blogs')->add(__('게시판 생성'),['route'=>'settings.blog.create'])->nickname('setting_blog_create');
+
+            $blogs = Blog::all();
+            foreach($blogs as $blog){
+                $menu->item('setting_blog_create')->add($blog->title,['route'=>['settings.blog.edit','blogId' => $blog->id]])->nickname('setting_blog_edit_' . $blog->id);
+            }
 
             return $menu;
         });

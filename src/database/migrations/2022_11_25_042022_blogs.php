@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('instance_id')->unique();
             $table->foreignUuid('tenant_id');
 
+            $table->string('skin_id');
+
             $table->json('title')->nullable();
             $table->json('description')->nullable();
 

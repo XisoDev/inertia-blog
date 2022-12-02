@@ -26,8 +26,14 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $target = __DIR__ . '/../views/Blogs';
+        $target = __DIR__ . '/../views/BlogSettings';
         $shortcut = resource_path('themes/settings/Pages/Blogs');
+
+        $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
+        symlink($target, $shortcut);
+
+        $target = __DIR__ . '/../views/Skin';
+        $shortcut = resource_path('skins/blogs/default');
 
         $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
         symlink($target, $shortcut);
