@@ -18,7 +18,6 @@ class BlogSettingsController extends BaseController
 
     public function __construct()
     {
-        $this->defaultSkinPath = resource_path('/skins/blogs/');
         //최대한 늦게 초기화 되기 위해 미들웨어 안으로 넣는다.
         $this->middleware(function ($request, $next) {
             $this->themeHandler = new ThemeHandler();
@@ -28,7 +27,7 @@ class BlogSettingsController extends BaseController
 
     public function index(): RenderingView
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with('tenant')->get();
         return $this->themeHandler->render('Blogs/Index', [
             'blogs' => $blogs
         ]);

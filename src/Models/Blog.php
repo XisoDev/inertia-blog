@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 use Xiso\InertiaBlog\Handlers\SkinHandler;
-use Xiso\InertiaBlog\Services\Skin;
-use Xiso\InertiaUI\Forms\Span;
 use Xiso\InertiaUI\Handlers\FormHandler;
 use Xiso\InertiaUI\Models\Tenant;
 use Xiso\InertiaUI\Traits\Uuids;
@@ -18,6 +16,7 @@ class Blog extends Model
     use HasFactory;
     use HasTranslations;
     use Uuids;
+    use BelongsToTenant;
 
     public array $translatable = ['title','description'];
     protected $guarded = [];

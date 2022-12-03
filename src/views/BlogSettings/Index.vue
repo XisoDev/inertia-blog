@@ -1,40 +1,11 @@
 <script setup>
 import AppLayout from '@themes/settings/Layouts/AppLayout.vue';
 import { CalendarIcon , UsersIcon } from '@heroicons/vue/solid'
+import moment from "moment";
 
 defineProps({
     blogs: Object
 });
-
-const positions = [
-    {
-        id: 1,
-        title: 'Back End Developer',
-        type: 'Full-time',
-        location: 'Remote',
-        department: 'Engineering',
-        closeDate: '2020-01-07',
-        closeDateFull: 'January 7, 2020',
-    },
-    {
-        id: 2,
-        title: 'Front End Developer',
-        type: 'Full-time',
-        location: 'Remote',
-        department: 'Engineering',
-        closeDate: '2020-01-07',
-        closeDateFull: 'January 7, 2020',
-    },
-    {
-        id: 3,
-        title: 'User Interface Designer',
-        type: 'Full-time',
-        location: 'Remote',
-        department: 'Design',
-        closeDate: '2020-01-14',
-        closeDateFull: 'January 14, 2020',
-    },
-]
 </script>
 
 <template>
@@ -69,17 +40,13 @@ const positions = [
                                             <UsersIcon class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                             {{ blog.tenant_id }}
                                         </p>
-                                        <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
-                                            <MapPinIcon class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                                            {{ blog.title[$page.props.locale] }}
-                                        </p>
                                     </div>
                                     <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
                                         <CalendarIcon class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <p>
-                                            Closing on
-                                            {{ ' ' }}
-                                            <time :datetime="blog.created_at">{{ blog.created_at }}</time>
+                                            <time :datetime="blog.created_at">
+                                                {{ moment(blog.created_at).format('YYYY-MM-DD') }}
+                                            </time>
                                         </p>
                                     </div>
                                 </div>
