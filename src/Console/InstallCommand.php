@@ -28,15 +28,21 @@ class InstallCommand extends Command
     {
         $target = __DIR__ . '/../views/BlogSettings';
         $shortcut = resource_path('themes/settings/Pages/Blogs');
-
-        $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
-        symlink($target, $shortcut);
+        if(!file_exists($shortcut)){
+            $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
+            symlink($target, $shortcut);
+        }else{
+            $this->info(sprintf('skipped create sym link %s (file exists)',$shortcut));
+        }
 
         $target = __DIR__ . '/../views/Skin';
         $shortcut = resource_path('skins/blogs/default');
-
-        $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
-        symlink($target, $shortcut);
+        if(!file_exists($shortcut)){
+            $this->info(sprintf("try create symlink %s to %s",$target, $shortcut));
+            symlink($target, $shortcut);
+        }else{
+            $this->info(sprintf('skipped create sym link %s (file exists)',$shortcut));
+        }
 
         return Command::SUCCESS;
     }

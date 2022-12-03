@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@themes/settings/Layouts/AppLayout.vue';
-import { CalendarIcon , UsersIcon } from '@heroicons/vue/solid'
+import { CalendarIcon , UsersIcon } from '@heroicons/vue/20/solid'
 import moment from "moment";
 
 defineProps({
@@ -10,7 +10,7 @@ defineProps({
 
 <template>
     <AppLayout title="Dashboard">
-        <div class="py-16" v-if="blogs.length < 1">
+        <div class="py-16 min-h-screen" v-if="blogs.length < 1">
             <div class="text-center">
                 <p class="text-base font-semibold text-indigo-600">Not Found</p>
                 <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">비어있어요 :(</h1>

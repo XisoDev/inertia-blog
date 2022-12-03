@@ -4,7 +4,7 @@ import AppLayout from '@themes/settings/Layouts/AppLayout.vue';
 import FieldLoader from '@fieldLoader/_LoaderString.vue';
 import FileLoader from '@fieldLoader/_LoaderObject.vue';
 
-import { InformationCircleIcon, PencilIcon, XCircleIcon, DotsCircleHorizontalIcon } from '@heroicons/vue/solid';
+import { InformationCircleIcon, PencilIcon, XCircleIcon, DotsCircleHorizontalIcon } from '@heroicons/vue/20/solid';
 import {useForm} from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
