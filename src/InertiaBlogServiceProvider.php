@@ -21,7 +21,10 @@ class InertiaBlogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        //setconfig
+        $this->mergeConfigFrom(__DIR__ . "/config/inertia-blog.php",'inertia-blog');
+        $this->mergeConfigFrom(__DIR__ . "/config/lecturize.php",'lecturize');
+        $this->mergeConfigFrom(__DIR__ . "/config/sluggable.php",'sluggable');
     }
 
     /**
@@ -38,6 +41,8 @@ class InertiaBlogServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/config/inertia-blog.php' => config_path('inertia-blog.php'),
+            __DIR__.'/config/lecturize.php' => config_path('lecturize.php'),
+            __DIR__.'/config/sluggable.php' => config_path('sluggable.php'),
         ],'xisoblog-config');
 
         $this->publishes([
