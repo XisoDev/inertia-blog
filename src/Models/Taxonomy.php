@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiso\InertiaBlog;
+namespace Xiso\InertiaBlog\Models;
 
 use Xiso\InertiaBlog\Post;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;

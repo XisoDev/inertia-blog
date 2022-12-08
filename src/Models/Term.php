@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiso\InertiaBlog;
+namespace Xiso\InertiaBlog\Models;
 
 use Lecturize\Taxonomies\Models\Term as TermBase;
 
